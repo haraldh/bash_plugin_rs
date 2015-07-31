@@ -1,0 +1,16 @@
+[package]
+name = "bash_plugin_rs"
+version = "0.1.0"
+authors = ["Harald Hoyer <harald@redhat.com>"]
+edition = "2018"
+
+[dependencies]
+
+[build-dependencies]
+bindgen = "0.42.2"
+
+[dev-dependencies]
+
+[[example]]
+name = "hello"
+crate-type = ["cdylib"]
