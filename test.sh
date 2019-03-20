@@ -1,28 +1,36 @@
 #!/bin/bash
+set -x
+
+unset LIB
+
+if [[ $(uname -s) == Darwin ]]; then
+    DYN_EXT=dylib
+else
+    DYN_EXT=so
+fi
+
+LIB_RELEASE=./target/release/examples/libhello.${DYN_EXT}
+LIB_DEBUG=./target/debug/examples/libhello.${DYN_EXT}
+
+if [[ -f $LIB_RELEASE ]] && [[ -f $LIB_DEBUG ]]; then
+    if [[ $LIB_RELEASE -nt $LIB_DEBUG ]]; then
+        LIB=$LIB_RELEASE
+    else
+        LIB=$LIB_DEBUG
+    fi
+elif [[ -f $LIB_RELEASE ]]; then
+    LIB=$LIB_RELEASE
+elif [[ -f $LIB_DEBUG ]]; then
+    LIB=$LIB_DEBUG
+fi
+
+[[ $LIB ]] || exit 1
 
 # dlopen the log builtin bash module
-enable -f ./log.so log_open log_msg log_close
+enable -f "$LIB" hello
 
-BASH_LOG_TARGET=journal-or-kmsg log_open MYAPP
+help hello
 
-if ! log_msg "Hello World!"; then
-    echo "Test failed! rc=$?"
-fi
+hello
 
-test_func() {
-    log_msg "Hello" "World" "from" "a" "function!"
-}
-
-test_func
-
-eval 'log_msg "Hello World" "from eval!"'
-
-log_close
-
-l=$(log_msg "After log_close" 2>&1)
-if [[ $l != "After log_close" ]]; then
-    echo "Test failed after log_close"
-fi
-
-journalctl --no-pager -t MYAPP -n3 -o verbose
-exit 0
+[[ $(hello) == "Hello World!" ]]
