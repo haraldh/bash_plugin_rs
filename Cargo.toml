@@ -9,8 +9,7 @@ edition = "2018"
 [build-dependencies]
 bindgen = "0.42.2"
 
-[dev-dependencies]
-
-[[example]]
-name = "hello"
-crate-type = ["cdylib"]
+[workspace]
+members = [
+    "hello"
+]

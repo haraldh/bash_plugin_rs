@@ -2,6 +2,8 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
+use std::ffi::CStr;
+use std::os::raw::{c_char, c_void};
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[repr(C)]
@@ -9,12 +11,25 @@ pub struct builtin {
     pub name: *const u8,
     pub function: sh_builtin_func_t,
     pub flags: ::std::os::raw::c_int,
-    pub long_doc: *const u8,
+    pub long_doc: *const *const u8,
     pub short_doc: *const u8,
     pub handle: *mut u8,
 }
 
 unsafe impl Sync for builtin {}
+
+pub fn argv_list<'a>(argv_0: *const u8, word_list: &'a mut WORD_LIST) -> Vec<&CStr> {
+    let mut argv = Vec::<&CStr>::new();
+    unsafe { argv.push(CStr::from_ptr(argv_0 as *const c_char)) };
+    let mut word_list: *mut WORD_LIST = word_list;
+    while (word_list as *mut _ as *mut c_void) != (0 as *mut c_void) {
+        argv.push(unsafe { CStr::from_ptr((*(*word_list).word).word) });
+        unsafe {
+            word_list = (*word_list).next;
+        }
+    }
+    argv
+}
 
 #[test]
 fn bindgen_test_layout_builtin() {

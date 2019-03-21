@@ -11,10 +11,9 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("include/all.h")
-        .whitelist_function("builtin_usage")
-        .whitelist_function("internal_getopt")
-        .whitelist_function("reset_internal_getopt")
         .whitelist_type("sh_builtin_func_t")
+        .whitelist_type("WORD_LIST")
+        //.whitelist_type("builtin")
         .whitelist_var("BUILTIN_ENABLED")
         // Finish the builder and generate the bindings.
         .generate()
@@ -26,4 +25,6 @@ fn main() {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
+    println!("cargo:rustc-link-arg=-undefined");
+    println!("cargo:rustc-link-arg=-dynamic_lookup");
 }
