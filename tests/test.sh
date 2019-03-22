@@ -9,8 +9,8 @@ else
     DYN_EXT=so
 fi
 
-LIB_RELEASE=../target/release/libhello.${DYN_EXT}
-LIB_DEBUG=../target/debug/libhello.${DYN_EXT}
+LIB_RELEASE=./target/release/deps/libhello.${DYN_EXT}
+LIB_DEBUG=./target/debug/deps/libhello.${DYN_EXT}
 
 if [[ -f $LIB_RELEASE ]] && [[ -f $LIB_DEBUG ]]; then
     if [[ $LIB_RELEASE -nt $LIB_DEBUG ]]; then

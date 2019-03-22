@@ -14,7 +14,7 @@ pub fn hello_main(argv: &[&CStr]) -> i32 {
 
 #[no_mangle]
 pub unsafe extern "C" fn hello_func(word_list: *mut word_list) -> i32 {
-    hello_main(&argv_list(hello_struct.name, &mut *word_list))
+    hello_main(&argv_list(&mut *word_list))
 }
 
 #[no_mangle]
