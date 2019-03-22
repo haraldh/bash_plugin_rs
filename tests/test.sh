@@ -9,20 +9,7 @@ else
     DYN_EXT=so
 fi
 
-LIB_RELEASE=./target/release/deps/libhello.${DYN_EXT}
-LIB_DEBUG=./target/debug/deps/libhello.${DYN_EXT}
-
-if [[ -f $LIB_RELEASE ]] && [[ -f $LIB_DEBUG ]]; then
-    if [[ $LIB_RELEASE -nt $LIB_DEBUG ]]; then
-        LIB=$LIB_RELEASE
-    else
-        LIB=$LIB_DEBUG
-    fi
-elif [[ -f $LIB_RELEASE ]]; then
-    LIB=$LIB_RELEASE
-elif [[ -f $LIB_DEBUG ]]; then
-    LIB=$LIB_DEBUG
-fi
+LIB=$(ls -1 -t ./target/debug/deps/libhello*.${DYN_EXT} 2>/dev/null | { read a; echo $a; })
 
 [[ $LIB ]] || exit 1
 
