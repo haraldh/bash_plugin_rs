@@ -1,11 +1,15 @@
 [package]
-name = "hello"
+name = "hello_bash_plugin"
 version = "0.1.0"
 authors = ["Harald Hoyer <harald@redhat.com>"]
 edition = "2018"
+license = "GPL-3.0-or-later"
+description = "test crate for bash_plugin_rs"
+repository = "https://github.com/haraldh/bash_plugin_rs"
 
 [lib]
+name = "hello"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-bash_plugin_rs = { path = "../" }
+bash_plugin_rs = { path = "../", version = "0.1.0" }

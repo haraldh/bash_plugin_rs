@@ -3,14 +3,16 @@ name = "bash_plugin_rs"
 version = "0.1.0"
 authors = ["Harald Hoyer <harald@redhat.com>"]
 edition = "2018"
-
-[dependencies]
+license = "GPL-3.0-or-later"
+description = "crate to write bash plugins"
+#homepage = "https://github.com/haraldh/bash_plugin_rs"
+repository = "https://github.com/haraldh/bash_plugin_rs"
 
 [build-dependencies]
 bindgen = "0.42.2"
 
 [dev-dependencies]
-hello = { path = "hello" }
+#hello_bash_plugin = { path = "hello", version = "0.1" }
 
 [workspace]
 members = [
