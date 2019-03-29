@@ -13,7 +13,7 @@ pub struct builtin {
     pub flags: ::std::os::raw::c_int,
     pub long_doc: *const *const u8,
     pub short_doc: *const u8,
-    pub handle: *mut u8,
+    pub handle: *const u8,
 }
 
 unsafe impl Sync for builtin {}

@@ -15,5 +15,6 @@ hello_bash_plugin = { path = "hello", version = "0.1" }
 
 [workspace]
 members = [
-    "hello"
+    "hello",
+    "state"
 ]
