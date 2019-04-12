@@ -19,8 +19,12 @@ enable -f "$LIB" state
 help state
 
 state
+
 [[ $(state) == 1 ]] || exit 1
+[[ $(state) == 1 ]] || exit 1
+
 state
 [[ $(state) == 2 ]] || exit 1
+
 state
 [[ $(state) == 3 ]] || exit 1
