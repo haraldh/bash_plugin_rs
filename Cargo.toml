@@ -1,7 +1,7 @@
 [package]
 name = "bash_plugin_rs"
 version = "0.2.0"
-authors = ["Harald Hoyer <harald@redhat.com>"]
+authors = ["Harald Hoyer <harald@hoyer.xyz>"]
 edition = "2018"
 license = "GPL-3.0-or-later"
 description = "crate to write bash plugins"
