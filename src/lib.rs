@@ -18,17 +18,17 @@ pub struct builtin {
 
 unsafe impl Sync for builtin {}
 
-pub fn argv_list<'a>(word_list: &'a mut WORD_LIST) -> Vec<&CStr> {
+/// # Safety
+/// All pointers in `word_list` must be valid for 'a.
+pub unsafe fn argv_list<'a>(word_list: &'a mut WORD_LIST) -> Vec<&'a CStr> {
     let mut argv = Vec::<&CStr>::new();
     let mut word_list: *mut WORD_LIST = word_list;
     while (word_list as *mut _ as *mut c_void) != std::ptr::null_mut() {
-        argv.push(unsafe {
+        argv.push({
             assert_ne!(std::ptr::null_mut(), (*(*word_list).word).word);
             CStr::from_ptr((*(*word_list).word).word)
         });
-        unsafe {
-            word_list = (*word_list).next;
-        }
+        word_list = (*word_list).next;
     }
     argv
 }
