@@ -13,6 +13,8 @@ pub fn state_main(_argv: &[&CStr]) -> i32 {
     0
 }
 
+/// # Safety
+/// All pointers in `word_list` must be valid.
 #[no_mangle]
 pub unsafe extern "C" fn state_func(word_list: *mut word_list) -> i32 {
     state_main(&argv_list(&mut *word_list))
