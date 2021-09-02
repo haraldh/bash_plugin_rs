@@ -11,7 +11,8 @@ repository = "https://github.com/haraldh/bash_plugin_rs"
 bindgen = "0.42.2"
 
 [dev-dependencies]
-hello_bash_plugin = { path = "hello", version = "0.1" }
+hello_bash_plugin = { path = "hello" }
+state_bash_plugin = { path = "state" }
 
 [workspace]
 members = [
