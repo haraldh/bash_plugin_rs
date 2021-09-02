@@ -3,7 +3,7 @@
 #![allow(non_snake_case)]
 
 use std::ffi::CStr;
-use std::os::raw::{c_void};
+use std::os::raw::c_void;
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[repr(C)]

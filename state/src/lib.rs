@@ -18,7 +18,6 @@ pub unsafe extern "C" fn state_func(word_list: *mut word_list) -> i32 {
     state_main(&argv_list(&mut *word_list))
 }
 
-
 #[derive(Default)]
 struct StateInner {
     counter: u8,
@@ -30,7 +29,9 @@ struct State {
 
 impl State {
     pub fn new() -> Arc<State> {
-        Arc::new(State { inner: RwLock::new(Default::default()) })
+        Arc::new(State {
+            inner: RwLock::new(Default::default()),
+        })
     }
     pub fn current() -> Arc<State> {
         CURRENT_STATE.with(|c| c.clone())
