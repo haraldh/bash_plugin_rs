@@ -1,5 +1,7 @@
 #![allow(non_upper_case_globals)]
 
+//! Example usage of bash_plugin_rs
+
 use bash_plugin_rs::{argv_list, builtin, word_list, BUILTIN_ENABLED};
 use std::ffi::CStr;
 use std::sync::{Arc, RwLock};

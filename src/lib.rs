@@ -1,3 +1,16 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+//! rust bindings to create bash plugins
+//!
+//! This crate lets you build shared libraries, which can be
+//! loaded from within bash and used as super fast internal commands.
+//!
+//! ```bash
+//! enable -f <LIBRARY> <COMMAND>
+//! ```
+//!
+//! For examples look at the examples/tests of the git repository.
+
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
