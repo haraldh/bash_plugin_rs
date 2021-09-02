@@ -1,6 +1,6 @@
 [package]
 name = "bash_plugin_rs"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Harald Hoyer <harald@redhat.com>"]
 edition = "2018"
 license = "GPL-3.0-or-later"
@@ -8,10 +8,11 @@ description = "crate to write bash plugins"
 repository = "https://github.com/haraldh/bash_plugin_rs"
 
 [build-dependencies]
-bindgen = "0.42.2"
+bindgen = "0.59.1"
 
 [dev-dependencies]
-hello_bash_plugin = { path = "hello", version = "0.1" }
+hello_bash_plugin = { path = "hello" }
+state_bash_plugin = { path = "state" }
 
 [workspace]
 members = [

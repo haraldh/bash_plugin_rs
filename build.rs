@@ -1,5 +1,3 @@
-use bindgen;
-
 use std::env;
 use std::path::PathBuf;
 
@@ -11,10 +9,10 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("include/all.h")
-        .whitelist_type("sh_builtin_func_t")
-        .whitelist_type("WORD_LIST")
+        .allowlist_type("sh_builtin_func_t")
+        .allowlist_type("WORD_LIST")
         //.whitelist_type("builtin")
-        .whitelist_var("BUILTIN_ENABLED")
+        .allowlist_var("BUILTIN_ENABLED")
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.

@@ -3,7 +3,6 @@
 #![allow(non_snake_case)]
 
 use std::ffi::CStr;
-use std::os::raw::{c_void};
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[repr(C)]
@@ -20,10 +19,9 @@ unsafe impl Sync for builtin {}
 
 /// # Safety
 /// All pointers in `word_list` must be valid for 'a.
-pub unsafe fn argv_list<'a>(word_list: &'a mut WORD_LIST) -> Vec<&'a CStr> {
+pub unsafe fn argv_list<'a>(mut word_list: *mut WORD_LIST) -> Vec<&'a CStr> {
     let mut argv = Vec::<&CStr>::new();
-    let mut word_list: *mut WORD_LIST = word_list;
-    while (word_list as *mut _ as *mut c_void) != std::ptr::null_mut() {
+    while !word_list.is_null() {
         argv.push({
             assert_ne!(std::ptr::null_mut(), (*(*word_list).word).word);
             CStr::from_ptr((*(*word_list).word).word)

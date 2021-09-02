@@ -12,9 +12,11 @@ pub fn hello_main(argv: &[&CStr]) -> i32 {
     0
 }
 
+/// # Safety
+/// All pointers in `word_list` must be valid.
 #[no_mangle]
 pub unsafe extern "C" fn hello_func(word_list: *mut word_list) -> i32 {
-    hello_main(&argv_list(&mut *word_list))
+    hello_main(&argv_list(word_list))
 }
 
 #[no_mangle]
