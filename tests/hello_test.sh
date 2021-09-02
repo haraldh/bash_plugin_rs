@@ -9,7 +9,8 @@ else
     DYN_EXT=so
 fi
 
-LIB=$(ls -1 -t ./target/debug/deps/libhello*.${DYN_EXT} 2>/dev/null | { read a; echo $a; })
+
+LIB=$(ls -1 -t $OUT_DIR/../../../deps/libhello*.${DYN_EXT} 2>/dev/null | { read a; echo $a; })
 
 [[ $LIB ]] || exit 1
 
