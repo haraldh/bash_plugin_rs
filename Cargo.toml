@@ -8,7 +8,7 @@ description = "crate to write bash plugins"
 repository = "https://github.com/haraldh/bash_plugin_rs"
 
 [build-dependencies]
-bindgen = "0.59.1"
+bindgen = "0.63.0"
 
 [dev-dependencies]
 hello_bash_plugin = { path = "hello" }
